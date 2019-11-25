@@ -1,0 +1,12 @@
+<div *ngIf="houses.length > 0">
+    <mat-card *ngFor="let house of houses">
+        <mat-card-title>
+         {{ house.title }}
+        </mat-card-title> 
+        <mat-card-content>
+            {{ house.description }}
+        </mat-card-content>
+     
+     </mat-card>
+</div>
+<p class="mat-body-1" *ngIf="houses.length <= 0"> No Houses Yet</p>
