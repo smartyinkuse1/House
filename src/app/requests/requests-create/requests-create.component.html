@@ -1,0 +1,30 @@
+<mat-card>
+    <form [formGroup]="form">
+        <h4>Landlord Info</h4>
+        <mat-form-field>
+            <label>First Name</label>
+            <input matInput type="text" formControlName="FirstName">
+            <mat-error *ngIf="form.get('FirstName').invalid">Minimum of 5 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <label>Last Name</label>
+            <input matInput type="text" formControlName="LastName">
+            <mat-error *ngIf="form.get('LastName').invalid">Minimum of 5 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <label>Telephone</label>
+            <input matInput type="tel" formControlName="Telephone">
+            <mat-error *ngIf="form.get('Telephone').invalid">Minimum of 5 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <label>Address</label>
+            <input matInput type="text" formControlName="Address">
+            <mat-error *ngIf="form.get('Address').invalid">Minimum of 5 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+                <label>Email</label>
+                <input matInput type="email" formControlName="Email">
+                <mat-error *ngIf="form.get('Email').invalid">Minimum of 5 characters</mat-error>
+            </mat-form-field>
+    </form>
+</mat-card> 

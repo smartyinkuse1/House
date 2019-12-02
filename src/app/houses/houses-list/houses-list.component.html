@@ -6,6 +6,8 @@
         <mat-card-content>
             {{ house.description }}
         </mat-card-content>
+            <a mat-button color="primary" [routerLink] = "['edit', house.id]">Edit</a>
+            <button mat-button color="warn" (click)="onDelete(house.id)">Delete</button>
      
      </mat-card>
 </div>

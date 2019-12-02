@@ -17,7 +17,7 @@ app.use((req, res, next)=>{
         "Origin, X-Requested-With, Content-Type, Accept"
     )
     res.setHeader("Access-Control-Allow-Methods",
-    "GET, POST, PATCH, OPTIONS")
+    "GET, POST, PATCH, DELETE, OPTIONS")
 
     next()
 })

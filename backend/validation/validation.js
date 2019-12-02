@@ -18,7 +18,7 @@ const loginValidation = data =>{
 }
 const houseValidation = data =>{
     const schema={
-        id:Joi.number(),
+        id:Joi.string().allow(null),
         title: Joi.string(),
         location: Joi.string(),
         description: Joi.string(),

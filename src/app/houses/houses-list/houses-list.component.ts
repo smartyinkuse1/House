@@ -20,6 +20,9 @@ export class HouseListComponent implements OnInit, OnDestroy {
             this.houses = houses;
         });
     }
+    onDelete(houseId: string) {
+        this.housesService.deleteHouse(houseId);
+    }
     ngOnDestroy() {
         this.HousesSub.unsubscribe();
     }

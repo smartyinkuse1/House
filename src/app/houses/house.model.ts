@@ -1,5 +1,5 @@
 export  interface House {
-    id: number;
+    id: string;
     title: string;
     location: string;
     description: string;

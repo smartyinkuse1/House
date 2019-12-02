@@ -1,0 +1,10 @@
+input[type='file'] {
+    visibility: hidden;
+}
+.imagepicked {
+    height: 5rem;
+    margin: 1rem 0;
+    }
+.imagepicked img {
+    height: 100%;
+}

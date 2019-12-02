@@ -47,9 +47,7 @@ exports.login = async(req, res) =>{
     }
 }
 exports.create = async(req, res)=>{
-    console.warn(req.body)
     const { error } = houseValidation(req.body)
-    console.log(error)
     if (error) return res.status(400).send({message: error.details[0].message})
     const house = new House({
        title: req.body.title,
@@ -67,7 +65,7 @@ exports.create = async(req, res)=>{
         res.status(404).send({message:err})
     }
 }
-exports.getHouse = (req, res)=>{
+exports.getHouses = (req, res)=>{
     House.find().then(houses =>{
         res.send(
             {message: 'welcome to house application',
@@ -79,4 +77,38 @@ exports.getHouse = (req, res)=>{
             message: err.message || "some errors eccoured while retrieving the houses"
         });
     });
+}
+exports.getHouse = (req, res)=>{
+    House.findById({_id:req.params.id}).then(house=>{
+        if (house) {res.status(200).send(house)}
+        else{res.status(404).send({message:"House not found!"})}
+    })
+
+}
+exports.delete = (req, res)=>{
+    House.deleteOne({_id: req.params.houseId})
+    .then(()=>{
+        res.send({message:"house deleted succesfully"})
+    }).catch(err=>{
+        res.status(404).send({message: err})
+    })
+}
+exports.update = (req, res)=>{
+    const { error } = houseValidation(req.body)
+    if (error) return res.status(400).send({message: error.details[0].message})
+    const house = new House({
+        _id: req.body.id,
+       title: req.body.title,
+       location:req.body.location,
+       description: req.body.description,
+       price: req.body.price,
+      // landlord: req.params.userId,
+       mode: req.body.mode
+    })
+    House.updateOne({_id: req.params.houseId}, house).then(result=>{
+        console.log(result)
+        res.status(200).send({message: "House updated successfully"})
+    }).catch(err=>{
+        res.status(400).send({message: err})
+    })
 }
