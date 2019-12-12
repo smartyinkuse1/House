@@ -1,8 +1,13 @@
+<div class="container">
+</div>
 <div *ngIf="houses.length > 0">
     <mat-card *ngFor="let house of houses">
         <mat-card-title>
          {{ house.title }}
         </mat-card-title> 
+        <div class="house-image">
+            <img [src]="house.imagePath" [alt]="house.title">
+        </div>
         <mat-card-content>
             {{ house.description }}
         </mat-card-content>
@@ -11,4 +16,7 @@
      
      </mat-card>
 </div>
+<mat-paginator [length]="totalLength" [pageSize]="housePerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)" *ngIf="houses.length > 0">
+
+</mat-paginator>
 <p class="mat-body-1" *ngIf="houses.length <= 0"> No Houses Yet</p>

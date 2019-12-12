@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule, MatToolbar,
-   MatSelectModule, MatProgressSpinnerModule} from '@angular/material';
+   MatSelectModule, MatProgressSpinnerModule, MatPaginatorModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { HouseCreateComponent } from './houses/houses-create/houses-create.component';
@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { RequestCreateComponent } from './requests/requests-create/requests-create.component';
 import { RequestListComponent } from './requests/requests-list/requests-list.component';
+import { LoginComponent } from './auth/Login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,8 @@ import { RequestListComponent } from './requests/requests-list/requests-list.com
     HeaderComponent,
     HouseListComponent,
     RequestCreateComponent,
-    RequestListComponent
+    RequestListComponent,
+    LoginComponent
 
   ],
   imports: [
@@ -34,7 +36,9 @@ import { RequestListComponent } from './requests/requests-list/requests-list.com
     MatToolbarModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    MatPaginatorModule,
 
   ],
   providers: [],

@@ -1,0 +1,24 @@
+<div class="container"> 
+    Landlord requests
+</div>
+    <div *ngIf="requests.length > 0">
+        <mat-card *ngFor="let request of requests">
+            <mat-card-title>
+             {{ request.email }}
+            </mat-card-title> 
+            
+            <mat-card-content>
+                <p>{{ request.FirstName }}</p>
+                <p>{{ request.FirstName }}</p>
+                <p>{{ request.Telephone }}</p>
+                <p>{{ request.FirstName }}</p>
+                <p>{{ request.Address }}</p>
+                
+            </mat-card-content>
+                <a mat-button color="primary" [routerLink]="['/view', request.id]">Verify Landlord</a>
+                <!-- <button mat-button color="warn" >Delet</button> -->
+         
+         </mat-card>
+    </div>
+   
+    <p class="mat-body-1" *ngIf="requests.length <= 0"> No Request Yet</p>

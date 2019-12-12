@@ -3,17 +3,13 @@ const House = require('../model/house');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { signupValidation, loginValidation, houseValidation } = require('../validation/validation')
+const Request = require('../model/request')
 const Super = new User({
     email: 'super',
     username: 'super',
     password: 'super',
     role:'superuser'
 })
-try{
-
-}catch(err){
-    
-}
 exports.signin = async (req, res)=>{
     const {error} = signupValidation(req.body)
     if (error) return res.status(400).send({message: error.details[0].message})
@@ -26,16 +22,15 @@ exports.signin = async (req, res)=>{
         lastName:req.body.lastname,
         email:req.body.email,
         username: req.body.username,
-        password:hashedpassword,
+        password:hashedpassword, 
         role:"user"
     })
-    try{
-        const Saveduser = await user.save()
-        console.log(Saveduser)
-        res.send({message:"user created succesfully"})
-    }catch(err){
+        user.save().then(user =>{
+        res.send({message:"user created succesfully",
+    User:user})})
+        .catch(err=>{
         res.status(400).send({message:err})
-    }
+    })
 }
 exports.login = async(req, res) =>{
     const { error } = loginValidation(req.body)
@@ -49,30 +44,52 @@ exports.login = async(req, res) =>{
 exports.create = async(req, res)=>{
     const { error } = houseValidation(req.body)
     if (error) return res.status(400).send({message: error.details[0].message})
+    const url = req.protocol + '://' + req.get('host');
     const house = new House({
        title: req.body.title,
        location:req.body.location,
        description: req.body.description,
        price: req.body.price,
       // landlord: req.params.userId,
-       mode: req.body.mode
+       mode: req.body.mode,
+       imagePath: url + '/images/' + req.file.filename
     })
-    try{
-        const savedhouse = await house.save()
-        // console.warn(savedhouse)
-        res.send({message:"House created successfully"})
-    }catch(err){
-        res.status(404).send({message:err})
-    }
+    house.save().then(savedhouse =>{
+        res.send({message:"House created successfully",
+    house : {
+        id: savedhouse._id,
+        title: savedhouse.title,
+        location: savedhouse.location,
+        price: savedhouse.price,
+        mode: savedhouse.mode,
+        imagePath: savedhouse.imagePath
+} })
+    })
+    // .catch(err =>{
+    //     res.status(404).send({message:err})
+    // }
 }
 exports.getHouses = (req, res)=>{
-    House.find().then(houses =>{
+    const pageSize =  +req.query.pagesize
+    const currentPage = +req.query.page
+    let postQuery = House.find()
+    let Houses;
+    if(pageSize && currentPage){
+        postQuery.skip(pageSize*(currentPage-1))
+        .limit(pageSize)
+    }
+
+    postQuery.then(houses =>{
+        Houses = houses
+        return House.count()
+    }).then(count=>{
         res.send(
             {message: 'welcome to house application',
-            houses: houses
+            houses: Houses,
+            maxHouses: count
     })
-    console.warn(houses)
-    }).catch(err =>{
+    })
+    .catch(err =>{
         res.status(500).send({
             message: err.message || "some errors eccoured while retrieving the houses"
         });
@@ -96,6 +113,11 @@ exports.delete = (req, res)=>{
 exports.update = (req, res)=>{
     const { error } = houseValidation(req.body)
     if (error) return res.status(400).send({message: error.details[0].message})
+    let imagePath = req.body.imagePath;
+    if (req.file){
+        const url = req.protocol + '://' + req.get('host')
+        imagePath = url + "/images/" + req.file.filename
+    }
     const house = new House({
         _id: req.body.id,
        title: req.body.title,
@@ -103,12 +125,61 @@ exports.update = (req, res)=>{
        description: req.body.description,
        price: req.body.price,
       // landlord: req.params.userId,
-       mode: req.body.mode
+       mode: req.body.mode,
+       imagePath: imagePath
     })
     House.updateOne({_id: req.params.houseId}, house).then(result=>{
         console.log(result)
         res.status(200).send({message: "House updated successfully"})
     }).catch(err=>{
         res.status(400).send({message: err})
+    })
+}
+exports.createRequest = async(req, res) => {
+    const hashedpassword = await bcrypt.hash(req.body.Password, 10)
+    const request = new Request({
+        FirstName: req.body.FirstName,
+        LastName: req.body.LastName,
+        Telephone: req.body.Telephone,
+        Address: req.body.Address,
+        email: req.body.Email,
+        Username: req.body.Username,
+        Password: hashedpassword
+    })
+    request.save().then(savedRequest =>{
+        res.send({
+            message: "Request created successfully",
+            request:savedRequest})
+    }).catch(err=>{
+        res.status(400).send({message: err})
+    })
+}
+exports.getRequests = (req, res) => {
+    Request.find().then(requests=>{
+        res.send({
+            message: "Requests collected successfully",
+            requests: requests
+        })
+    })
+    .catch(err =>{
+        res.status(500).send({
+            message: err.message || "some errors eccoured while retrieving the requests"
+        });
+    });
+}
+exports.getRequest = (req, res)=>{
+    Request.findById({_id:req.params.requestId}).then(request=>{
+        if (request) {res.status(200).send({message: "request gotten succesfully",
+        request: request})}
+        else{res.status(404).send({message:"Error in retreiving Request"})}
+    })
+
+}
+exports.delRequest = (req, res)=>{
+    Request.deleteOne({_id: req.params.requestId})
+    .then(()=>{
+        res.send({message:"request deleted succesfully"})
+    }).catch(err=>{
+        res.status(404).send({message: err})
     })
 }

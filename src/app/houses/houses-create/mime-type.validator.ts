@@ -44,5 +44,6 @@ export const mimeType = (
       fileReader.readAsArrayBuffer(file);
     }
   );
+  // console.log(frObs);
   return frObs;
 };

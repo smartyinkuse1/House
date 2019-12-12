@@ -29,8 +29,8 @@ export class HouseCreateComponent implements OnInit {
             description: new FormControl(null, {validators: [Validators.required, Validators.minLength(5)]}),
             price: new FormControl(null, {validators: [Validators.required, Validators.minLength(3)]}),
             image: new FormControl(null, {validators: [Validators.required ],
-            asyncValidators:[mimeType]}),
-            mode: new FormControl(null, {validators: [Validators.required] })
+            asyncValidators: [mimeType]}),
+            mode: new FormControl(null, {validators: [Validators.required], asyncValidators: [mimeType] })
         });
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
             if (paramMap.has('houseId')) {
@@ -45,13 +45,15 @@ export class HouseCreateComponent implements OnInit {
                     location: houseData.location,
                     description: houseData.description,
                     price: houseData.price,
-                    mode: houseData.mode};
+                    mode: houseData.mode,
+                    imagePath: houseData.imagePath};
                 this.form.setValue({
                         title: this.house.title,
                         location: this.house.location,
                         description: this.house.description,
                         price: this.house.price,
-                        mode: this.house.mode
+                        mode: this.house.mode,
+                        image: this.house.imagePath
                     });
               });
             } else {
@@ -78,11 +80,11 @@ export class HouseCreateComponent implements OnInit {
         }
         if (this.mode === 'create') {
             this.houseService.addHouse(
-                this.form.value.title,
-                this.form.value.location, this.form.value.description, this.form.value.price, this.form.value.mode);
+            this.form.value.title, this.form.value.location,
+                this.form.value.description, this.form.value.price, this.form.value.mode, this.form.value.image);
         } else {
             // tslint:disable-next-line: max-line-length
-            this.houseService.updateHouse(this.houseId, this.form.value.title, this.form.value.location, this.form.value.description, this.form.value.price, this.form.value.mode);
+            this.houseService.updateHouse(this.houseId, this.form.value.title, this.form.value.location, this.form.value.description, this.form.value.price, this.form.value.mode, this.form.value.image);
         }
 
         this.form.reset();

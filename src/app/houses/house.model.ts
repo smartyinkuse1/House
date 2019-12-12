@@ -5,5 +5,6 @@ export  interface House {
     description: string;
     price: number;
     mode: string;
+    imagePath: string;
 
 }

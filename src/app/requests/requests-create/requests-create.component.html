@@ -1,5 +1,5 @@
 <mat-card>
-    <form [formGroup]="form">
+    <form [formGroup]="form"(submit)="onAdd()">
         <h4>Landlord Info</h4>
         <mat-form-field>
             <label>First Name</label>
@@ -14,7 +14,7 @@
         <mat-form-field>
             <label>Telephone</label>
             <input matInput type="tel" formControlName="Telephone">
-            <mat-error *ngIf="form.get('Telephone').invalid">Minimum of 5 characters</mat-error>
+            <mat-error *ngIf="form.get('Telephone').invalid">Please provide a valid Phone</mat-error>
         </mat-form-field>
         <mat-form-field>
             <label>Address</label>
@@ -25,6 +25,18 @@
                 <label>Email</label>
                 <input matInput type="email" formControlName="Email">
                 <mat-error *ngIf="form.get('Email').invalid">Minimum of 5 characters</mat-error>
-            </mat-form-field>
+        </mat-form-field>
+        <mat-form-field>
+            <label>Username</label>
+            <input matInput type="text" formControlName="Username">
+            <mat-error *ngIf="form.get('Username').invalid">Minimum of 5 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <label>Password</label>
+            <input matInput type="password" formControlName="Password">
+            <mat-error *ngIf="form.get('Password').invalid">Minimum of 5 characters</mat-error>
+        </mat-form-field>
+            <div><button mat-raised-button
+                color="primary" type="submit">Save House</button></div>  
     </form>
 </mat-card> 

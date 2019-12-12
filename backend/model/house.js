@@ -22,8 +22,9 @@ const houseSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    img:[{
-        
+    imagePath:[{
+        type: String,
+        required: true
     }]
 
 

@@ -1,0 +1,9 @@
+.house-image{
+    width: 100%;
+}
+.house-image img {
+    max-width: 100%;
+}
+mat-paginator {
+    margin-top: 1rem;
+}
