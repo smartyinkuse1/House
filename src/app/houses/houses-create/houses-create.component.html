@@ -1,6 +1,6 @@
 <mat-card>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
-    <form [formGroup]="form" (submit)="onSaveHouse()">
+    <form [formGroup]="form" (submit)="onSaveHouse()" *ngIf="!isLoading">
         <h3>Welcome Landlords</h3>
         <mat-form-field>
             <mat-label >House title</mat-label>

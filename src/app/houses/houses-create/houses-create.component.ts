@@ -46,6 +46,7 @@ export class HouseCreateComponent implements OnInit {
                     description: houseData.description,
                     price: houseData.price,
                     mode: houseData.mode,
+                    landlord: houseData.landlord,
                     imagePath: houseData.imagePath};
                 this.form.setValue({
                         title: this.house.title,
@@ -78,6 +79,7 @@ export class HouseCreateComponent implements OnInit {
         if (this.form.invalid) {
             return;
         }
+        this.isLoading = true;
         if (this.mode === 'create') {
             this.houseService.addHouse(
             this.form.value.title, this.form.value.location,

@@ -1,10 +1,10 @@
 <mat-card>
-    <form (submit)="onLogin(loginForm)" #loginForm>
+    <form [formGroup]="form" (submit)="onLogin()">
         <mat-form-field>
-             <input name="username" ngModel matInput type="text" matInput placeholder="Username" #usernameInput="ngModel" required >
+             <input matInput  type="text" placeholder="Username" formControlName="Username" required >
         </mat-form-field>
         <mat-form-field>
-            <input type="password" name="password" ngModel  placeholder="Password" matInput #passwordInput="ngModel" required>
+            <input matInput type="password" placeholder="Password" formControlName="Password">
         </mat-form-field>
         <button mat-raised-button color="accent" type="submit">Login</button>
     </form>

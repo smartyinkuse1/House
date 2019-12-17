@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RequestsService } from '../requests.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
     selector: 'app-request-create',
@@ -10,6 +11,7 @@ import { RequestsService } from '../requests.service';
 
 export class RequestCreateComponent implements OnInit {
     form: FormGroup;
+    isLoading = false;
     constructor(public requestsService: RequestsService) {}
     ngOnInit() {
         this.form = new FormGroup({
@@ -23,6 +25,7 @@ export class RequestCreateComponent implements OnInit {
         });
     }
     onAdd() {
+        this.isLoading = true;
         this.requestsService.addRequest(this.form.value.FirstName, this.form.value.LastName, this.form.value.Telephone,
              this.form.value.Address, this.form.value.Email, this.form.value.Username, this.form.value.Password);
         this.form.reset();

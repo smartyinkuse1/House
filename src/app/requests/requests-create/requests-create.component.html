@@ -1,5 +1,6 @@
 <mat-card>
-    <form [formGroup]="form"(submit)="onAdd()">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form [formGroup]="form"(submit)="onAdd()" *ngIf="!isLoading">
         <h4>Landlord Info</h4>
         <mat-form-field>
             <label>First Name</label>

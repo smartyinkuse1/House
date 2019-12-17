@@ -9,11 +9,12 @@ import { HouseCreateComponent } from './houses/houses-create/houses-create.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { HouseListComponent } from './houses/houses-list/houses-list.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { RequestCreateComponent } from './requests/requests-create/requests-create.component';
 import { RequestListComponent } from './requests/requests-list/requests-list.component';
 import { LoginComponent } from './auth/Login/login.component';
+import { AuthInterceptor } from './auth/auth-interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,7 @@ import { LoginComponent } from './auth/Login/login.component';
     MatPaginatorModule,
 
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

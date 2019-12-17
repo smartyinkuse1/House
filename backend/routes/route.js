@@ -1,5 +1,6 @@
 module.exports = (app)=>{
 const multer = require('multer');
+const { verify, verify1 }= require('../validation/verify')
 const MIME_TYPE_MAP = {
     'image/png' : 'png',
     'image/jpeg' : 'jpg',
@@ -24,14 +25,15 @@ const storage = multer.diskStorage({
     const control = require('../controller/controller')
     app.post('/api/sign',control.signin)
     app.post('/api/login', control.login)
-    app.post('/api/create', multer({storage:storage}).single('image'), control.create)
+    app.post('/api/create', verify, multer({storage:storage}).single('image'), control.create)
     app.get('/api/houses', control.getHouses)
     app.get('/api/house/:id', control.getHouse)
-    app.delete('/api/houseDel/:houseId', control.delete)
-    app.put('/api/houseUp/:houseId', multer({storage:storage}).single('image'), control.update)
+    app.delete('/api/houseDel/:houseId',verify,  control.delete)
+    app.put('/api/houseUp/:houseId', verify, multer({storage:storage}).single('image'), control.update)
     app.post('/api/crequest', control.createRequest)
     app.get('/api/lrequest', control.getRequests)
     app.get('/api/request/:requestId', control.getRequest)
     app.delete('/api/requestDel/:requestId', control.delRequest)
+    app.post('/api/login', control.login)
 
-}
+} 

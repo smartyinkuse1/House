@@ -16,7 +16,8 @@ const houseSchema = new mongoose.Schema({
     },
     landlord:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'User'
+        ref:'User',
+        required:true
     },
     mode:{
         type:String,

@@ -8,3 +8,6 @@ input[type='file'] {
 .imagepicked img {
     height: 100%;
 }
+mat-spinner {
+    margin: auto;
+}

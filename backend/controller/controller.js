@@ -11,8 +11,8 @@ const Super = new User({
     role:'superuser'
 })
 exports.signin = async (req, res)=>{
-    const {error} = signupValidation(req.body)
-    if (error) return res.status(400).send({message: error.details[0].message})
+    // const {error} = signupValidation(req.body)
+    // if (error) return res.status(400).send({message: error.details[0].message})
     const userNameExist = await User.findOne({username:req.body.username})
     if (userNameExist) return res.status(400).send({message:'Username already exist'})
     const hashedpassword = await bcrypt.hash(req.body.password, 10)
@@ -37,11 +37,20 @@ exports.login = async(req, res) =>{
     if(error) return res.status(400).send({message:error.details[0].message})
     const users = await User.findOne({username: req.body.username})
     if(!users) return res.status(400).send({message: 'Inavalid Username'})
-    if (users.role === 'superuser'){
-        const validpass = await bcrypt.compare(req.body.password, users.password) 
+    if (users.role === 'user'){
+        const validpass = await bcrypt.compare(req.body.password, users.password)
+        console.log(validpass) 
+        if(!validpass) return res.status(400).send({message: 'Incorrect password!!'})
+        const token = jwt.sign({username: users.username, id:users._id}, process.env.SECRET_KEY1)
+        res.status(200).send({
+            token: token,
+            expiresIn: 3600,
+            userId: users._id
+        })
     }
 }
 exports.create = async(req, res)=>{
+    console.warn(req.userData)
     const { error } = houseValidation(req.body)
     if (error) return res.status(400).send({message: error.details[0].message})
     const url = req.protocol + '://' + req.get('host');
@@ -50,7 +59,7 @@ exports.create = async(req, res)=>{
        location:req.body.location,
        description: req.body.description,
        price: req.body.price,
-      // landlord: req.params.userId,
+       landlord: req.userData.userId,
        mode: req.body.mode,
        imagePath: url + '/images/' + req.file.filename
     })
@@ -103,9 +112,13 @@ exports.getHouse = (req, res)=>{
 
 }
 exports.delete = (req, res)=>{
-    House.deleteOne({_id: req.params.houseId})
-    .then(()=>{
-        res.send({message:"house deleted succesfully"})
+    House.deleteOne({_id: req.params.houseId, landlord: req.userData.userId})
+    .then((result)=>{
+        if (result.n > 0) {
+            res.status(200).send({message: "House Deleted successfully"})
+        } else {
+            res.status(401).send({message: "Not Authorized"})
+        }
     }).catch(err=>{
         res.status(404).send({message: err})
     })
@@ -124,19 +137,23 @@ exports.update = (req, res)=>{
        location:req.body.location,
        description: req.body.description,
        price: req.body.price,
-      // landlord: req.params.userId,
+       landlord: req.userData.userId,
        mode: req.body.mode,
        imagePath: imagePath
     })
-    House.updateOne({_id: req.params.houseId}, house).then(result=>{
-        console.log(result)
-        res.status(200).send({message: "House updated successfully"})
+    House.updateOne({_id: req.params.houseId, landlord: req.userData.userId }, house).then(result=>{
+        if (result.nModified > 0) {
+            res.status(200).send({message: "House updated successfully"})
+        } else {
+            res.status(401).send({message: "Not Authorized"})
+        }
+       
     }).catch(err=>{
         res.status(400).send({message: err})
     })
 }
 exports.createRequest = async(req, res) => {
-    const hashedpassword = await bcrypt.hash(req.body.Password, 10)
+    // const hashedpassword = await bcrypt.hash(req.body.Password, 10)
     const request = new Request({
         FirstName: req.body.FirstName,
         LastName: req.body.LastName,
@@ -144,7 +161,7 @@ exports.createRequest = async(req, res) => {
         Address: req.body.Address,
         email: req.body.Email,
         Username: req.body.Username,
-        Password: hashedpassword
+        Password: req.body.Password
     })
     request.save().then(savedRequest =>{
         res.send({

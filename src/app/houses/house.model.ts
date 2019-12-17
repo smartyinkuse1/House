@@ -5,6 +5,7 @@ export  interface House {
     description: string;
     price: number;
     mode: string;
+    landlord: string;
     imagePath: string;
 
 }

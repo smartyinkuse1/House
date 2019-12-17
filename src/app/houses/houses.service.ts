@@ -24,6 +24,7 @@ export class HousesService {
                         description: house.description,
                         price: house.price,
                         mode: house.mode,
+                        landlord: house.landlord,
                         imagePath: house.imagePath
                     };
                 }), maxHouses: houseData.maxHouses};
@@ -61,7 +62,7 @@ export class HousesService {
     }
     getHouse(id: string) {
         return this.http.get<{_id: string,
-            title: string, location: string, description: string, price: number, mode: string, imagePath: string}>
+            title: string, location: string, description: string, price: number, mode: string, landlord: string, imagePath: string}>
             ('http://localhost:4000/api/house/' + id);
     }
     updateHouse(Id: string, Title: string, Location: string, Description: string, Price: number, Mode: string, Image: File) {
@@ -78,7 +79,7 @@ export class HousesService {
             houseData.append('mode', Mode);
             houseData.append('image', Image );
         } else {
-            houseData = {id: Id, title: Title, location: Location, description: Description, price: Price, mode: Mode,
+            houseData = {id: Id, title: Title, location: Location, description: Description, price: Price, mode: Mode, landlord: null,
                  imagePath: Image };
         }
         this.http.put<{message: string}>('http://localhost:4000/api/houseUp/' + Id, houseData)
