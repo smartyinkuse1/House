@@ -8,4 +8,91 @@ color: white;
 }
 ul {
     display: flex;
+    list-style: none;
+}
+.back{
+    background-image: url('../../assets/Rectangle 9.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    max-width: 100%;
+}
+.backs{
+    background-image: url('../../assets/Rectangle 9.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 67vh;
+    max-width: 100%;
+}
+.want{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #FFFFFF;
+}
+.grade{
+    margin: auto;
+}
+.cent{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);}
+.wel{
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 34px;
+    color: #FFFFFF;
+}
+.wela{
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 15px;
+    color: #FFFFFF;
+}
+.get{
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.geta{
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    /* text-align: center; */
+    color: #FFFFFF;
+}
+.search{
+    background-color: #936A4A !important;
+    border-radius: 0px 5px 5px 0px !important;
+    transition: none !important;
+}
+.fungi{
+    background-color: #936A4A !important;
+    font-family: 'Poppins';
+    font-size: 14px;
+    border-radius: 5px !important;
+    color :#ffffff;
+}
+.fungi:hover{
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+    box-shadow: none;
+}
+.fungi:focus{
+    border: none !important;
+    box-shadow: none !important;
+}
+.fungi:active{
+    border: none !important;
+    box-shadow: none !important;
 }

@@ -3,31 +3,50 @@
     <span class="spacer"></span>
     <ul>
         <li *ngIf="userIsAuthenticated"><a mat-button routerLink="/create" routerLinkActive="">New House</a></li>
-        <li *ngIf="!userIsAuthenticated"><a mat-button routerLink="/auth/login" routerLinkActive="">Login</a></li>
-        <li *ngIf="!userIsAuthenticated"><a mat-button routerLink="/crequest" routerLinkActive="">Sign up</a></li>
-        <li *ngIf="userIsAuthenticated"><button mat-button (click)="onLogout()" >Logout</button></li>
+        <li *ngIf="!userIsAuthenticated"><a mat-button routerLink="/auth/login">Login</a></li>
+        <li *ngIf="!userIsAuthenticated"><a mat-button routerLink="/crequest">Sign up</a></li>
+        <li *ngIf="userIsAuthenticated"><button mat-button (click)="onLogout()">Logout</button></li>
     </ul>
 </mat-toolbar>
-<div class="back">
+<div class="back d-none d-sm-block">
     <div class="container pt-2">
         <div class="d-sm-flex want">
             <img src="Group 16.png" alt="">
-                <span class="pt-3 pl-2 d-none d-sm-block"> Want to become a LANDLORD on our platform?</span>
-                <span class="pt-2 pl-1 d-none d-sm-block"><button type="button" class="btn-sm fungi">Register</button></span>
-                <span class="d-inline pl-1 d-sm-none">Be a Landlord</span>
-                <span class="d-inline pl-1 d-sm-none"><button type="button" class="btn-sm fungi">Register</button></span>
-        </div> 
+            <span class="pt-3 pl-2 d-none d-sm-block"> Want to become a LANDLORD on our platform?</span>
+            <span class="pt-2 pl-1 d-none d-sm-block"><button type="button"
+                    class="btn-sm fungi">Register</button></span>
+
+        </div>
     </div>
     <div class="cent">
-        <h3 class="d-none d-sm-block  wel">Hey there, trust us to find you a home </h3>
-        <p class="d-block d-sm-none wela">Hey there, trust us to find you a home</p>
-            <p class="d-none d-sm-block get">Get yourself a place of your dreams</p>
-            <p class="d-block d-sm-none geta">Get yourself a place of your dreams</p>
-            <div class="input-group">
-                <input type="text" class="form-control pholder" placeholder="Where do you want to live?" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                    <button class="btn search" type="button" id="button-addon2"><img src="Vector.png"> <span style="color: #ffffff;">Search</span></button>
-                </div>
+        <h3 class="wel">Hey there, trust us to find you a home </h3>
+        <p class="get">Get yourself a place of your dreams</p>
+        <form class="input-group mt-3" [formGroup]="form" (submit)="onSearch()">
+            <input type="text" class="form-control pholder" placeholder="Where do you want to live?"
+                aria-label="Recipient's username" aria-describedby="button-addon2" formControlName="search">
+            <div class="input-group-append">
+                <button class="btn search" type="submit" id="button-addon2"><img src="../../assets/Vector.png"> <span
+                        style="color: #ffffff;">Search</span></button>
             </div>
-     </div>        
+        </form>
+    </div>
+</div>
+<div class="backs d-flex d-sm-none">
+    <div class="container pt-2">
+        <div class="want">
+            <img src="Group 16.png" alt="">
+            <span class="pl-1">Be a Landlord</span>
+            <span class="pl-1"><button type="button" class="btn-sm fungi">Register</button></span>
+        </div>
+    </div>
+    <div class="cent">
+        <p class="wela">Hey there, trust us to find you a home</p>
+        <p class="geta">Get yourself a place of your dreams</p>
+        <div>
+            <input type="text" class="form-control pholder" placeholder="Where do you want to live?"
+                aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn search ml-3 pl-2 mt-1" type="button" id="button-addon2"><img
+                    src="../../assets/Vector.png"> <span style="color: #ffffff;">Search</span></button>
+        </div>
+    </div>
 </div>

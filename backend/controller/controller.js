@@ -104,6 +104,32 @@ exports.getHouses = (req, res)=>{
         });
     });
 }
+exports.getRevHouses = (req, res)=>{
+    const pageSize =  +req.query.pagesize
+    const currentPage = +req.query.page
+    let postQuery = House.find().sort('-date')
+    let Houses;
+    if(pageSize && currentPage){
+        postQuery.skip(pageSize*(currentPage-1))
+        .limit(pageSize)
+    }
+
+    postQuery.then(houses =>{
+        Houses = houses
+        return House.count()
+    }).then(count=>{
+        res.send(
+            {message: 'welcome to house application',
+            houses: Houses,
+            maxHouses: count
+    })
+    })
+    .catch(err =>{
+        res.status(500).send({
+            message: err.message || "some errors eccoured while retrieving the houses"
+        });
+    });
+}
 exports.getAllHouses = (req, res)=>{
    House.find().then(houses => {
     res.send({

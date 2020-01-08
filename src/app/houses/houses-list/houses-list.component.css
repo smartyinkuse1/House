@@ -60,34 +60,17 @@ mat-paginator {
     font-family: 'Poppins';
     font-size: 14px;
     border-radius: 3px;
+    border: 1px solid #936A4A;
 }
-.fungi{
-    background-color: #936A4A !important;
-    font-family: 'Poppins';
-    font-size: 14px;
-    border-radius: 5px !important;
-    color :#ffffff;
+.brown {
+    background: rgba(147, 106, 74, 0.1);
 }
-.fungi:hover{
-    background-color: transparent;
-    text-decoration: none;
-    border: none;
-    box-shadow: none;
-}
-.fungi:focus{
-    border: none !important;
-    box-shadow: none !important;
-}
-.fungi:active{
-    border: none !important;
-    box-shadow: none !important;
-}
-
 .fung:hover{
     background-color: transparent;
     text-decoration: none;
     border: none;
     box-shadow: none;
+    border: 1px solid #936A4A;
 }
 .fung:focus{
     border: none !important;
@@ -102,6 +85,7 @@ mat-paginator {
     font-family: 'Poppins';
     font-size: 14px;
     color: #936A4A;
+    border: 1px solid #936A4A;
     border-color: #936A4A !important;
     transform: none !important;
     transition: none !important;
@@ -110,7 +94,7 @@ mat-paginator {
 .tung:hover{
     background-color: transparent;
     text-decoration: none;
-    border:  #936A4A !important;
+    border: 1px solid #936A4A !important;
     box-shadow:  #936A4A !important;
 }
 .tung:focus{

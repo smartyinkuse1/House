@@ -15,10 +15,9 @@ export class HouseListComponent implements OnInit, OnDestroy {
     AuthSub: Subscription;
     userIsAuthenticated = false;
     userId: string;
-    totalLength = 0;
+    totalLength = 10;
     housePerPage = 3;
     currentPage = 1;
-    pageSizeOptions = [1, 3, 5, 10];
     constructor(public housesService: HousesService, public authService: AuthService) {
 
     }
@@ -38,15 +37,28 @@ export class HouseListComponent implements OnInit, OnDestroy {
         });
     }
     onChangedPage(pageData: PageEvent) {
-        console.log(pageData);
-        // this.currentPage = pageData.pageIndex + 1;
-        // this.housesService.getHouses(this.housePerPage, this.currentPage);
+        // console.log(pageData);
+        this.currentPage = this.currentPage + 1;
+        this.housesService.getHouses(this.housePerPage, this.currentPage);
+        this.housesService.getRevHouses(this.housePerPage, this.currentPage);
 
     }
     onDelete(houseId: string) {
         this.housesService.deleteHouse(houseId).subscribe(() => {
             this.housesService.getHouses(this.housePerPage, this.currentPage);
         });
+    }
+    isFirst(house: House) {
+        if (this.houses[0] === house) {
+            return true;
+        }
+        return false;
+    }
+    isMode(house: House, mode: string) {
+        if(house.mode === mode ) {
+            return true
+        }
+        return false
     }
     ngOnDestroy() {
         this.HousesSub.unsubscribe();

@@ -1,27 +1,10 @@
 <app-header></app-header>
 <div class="container">
 </div>
-<div *ngIf="houses.length > 0">
-    <mat-card *ngFor="let house of houses">
-        <mat-card-title>
-         {{ house.title }}
-        </mat-card-title> 
-        <div class="house-image">
-            <img [src]="house.imagePath" [alt]="house.title">
-        </div>
-        <mat-card-content>
-            {{ house.description }}
-        </mat-card-content>
-            <a *ngIf="userIsAuthenticated && userId === house.landlord" mat-button color="primary" [routerLink] = "['edit', house.id]">Edit</a>
-            <button *ngIf="userIsAuthenticated && userId === house.landlord" mat-button color="warn" (click)="onDelete(house.id)">Delete</button>
-     
-     </mat-card>
-</div>
-<mat-paginator [length]="totalLength" [pageSize]="housePerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)" *ngIf="houses.length > 0">
 
-</mat-paginator>
+
 <p class="mat-body-1" *ngIf="houses.length <= 0"> No Houses Yet</p>
-<nav class="nav nav-tabs bord flex-column flex-sm-row pt-4" id="myTab">
+<nav *ngIf="houses.length > 0" class="nav nav-tabs bord flex-column flex-sm-row pt-4" id="myTab">
     <a class="flex-sm-fill text-sm-center nav-link active tabl" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">TOP APARTMENTS</a>
     <a class="flex-sm-fill text-sm-center nav-link tabl" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">POPULAR LOCATIONS</a>
     <a class="flex-sm-fill text-sm-center nav-link tabl" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">NEW APARTMENTS</a>
@@ -31,25 +14,25 @@
         <div class="container-fluid pt-4 pad">
             <div class="row" style="max-width:100%;">
                 <div class="col-sm-6">
-                    <div class="row mx-auto py-auto" style="background: rgba(147, 106, 74, 0.1);">
+                    <div class="row mx-auto py-auto" *ngFor="let house of houses" [ngClass]="{'brown': isFirst(house)}">
                         <div class="col-sm-6 d-flex flex-column align-items-center pt-2">
-                            <img src="Rectangle 13.png" style="max-width: 100%;">
-                            <span class="begtext"><img src="Vector (1).png"> No 39, Olayinka street, Abule-egba</span>
-                            <p class="begbig">5 BEDROOM MODERN DUPLEX HOUSE</p>
+                            <img [src]="house.imagePath" style="max-width: 100%;">
+                            <span class="begtext"><img src="../../../assets/Frame 3.png">  {{ house.location }}</span>
+                            <p class="begbig">{{ house.title }}</p>
                         </div>
                         <div class="col-sm-6 d-flex flex-column pt-2">
                             <p class="begtext">Description </p>
-                            <p class="begtext">Good lighting system, condusive environment, drainage system. Security measures are also put in place as though the environment is a calm place</p>
+                            <p class="begtext">{{ house.description }}</p>
                             <p class="begtext">More about this house</p>
                                 <span class="d-flex flex-row justify-content-around">
-                                    <button type="button" class="btn-sm fung">Rent</button>
-                                    <button type="button" class="btn-sm tung" disabled>Lease</button>
-                                    <button type="button" class="btn-sm tung" disabled>Buy</button>
+                                    <button type="button" class="btn-sm" [ngClass]="{'fung':isMode(house, 'Rent'), 'tung':!isMode(house, 'Rent')}">Rent</button>
+                                    <button type="button" class="btn-sm" [ngClass]="{'fung':isMode(house, 'Lease'), 'tung':!isMode(house, 'Lease')}" disabled>Lease</button>
+                                    <button type="button" class="btn-sm" [ngClass]="{'fung':isMode(house, 'Buy'), 'tung':!isMode(house, 'Buy')}" disabled>Buy</button>
                                 </span>
-                            <p class="cash pt-2">₦250,000</p>
+                            <p class="cash pt-2">₦{{ house.price }}</p>
                         </div>
                     </div>
-                    <div class="row mt-3">
+                    <!-- <div class="row mt-3">
                             <div class="col-sm-6 d-flex flex-column align-items-center pt-2">
                                 <img src="Rectangle 13.png" style="max-width: 100%;">
                                 <span class="begtext"><img src="Vector (1).png"> No 39, Olayinka street, Abule-egba</span>
@@ -88,7 +71,7 @@
                                     </div>
                                     <p class="cash pt-2">₦250,000</p>
                                 </div>
-                            </div>
+                            </div> -->
                             
                     
                 </div>
@@ -105,6 +88,7 @@
 </div>  
 <div class="container-fluid">
     <span class="begbig my-3">SEE ALL <img src="droplink.png"></span>
+    <mat-paginator [length]="totalLength" [pageSize]="housePerPage"  (page)="onChangedPage($event)"></mat-paginator>
     <!-- <p class="begbig">SEE ALL<span class="caret"></span></p> -->
 </div>
 <hr style="border: 1px solid #936A4A;">

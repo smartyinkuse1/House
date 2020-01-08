@@ -30,7 +30,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.form = new FormGroup({
             search: new FormControl(null, {validators: [Validators.required, Validators.minLength(3)]})
         })
-        this.houseService.getAllHousesUpdateListener()
+        this.houseService.getAllHouses();
+        this.housesListenerSub = this.houseService.getAllHousesUpdateListener()
         .subscribe(houseData => {
             this.houses = houseData.houses;
         })
@@ -43,6 +44,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.authService.logout();
     }
     onSearch() {
+        if(this.form.invalid) return;
         this.pipedHouse = this.filter.transform(this.houses, this.form.value.search)
+        console.log(this.pipedHouse);
+        this.form.reset();
     }
 }

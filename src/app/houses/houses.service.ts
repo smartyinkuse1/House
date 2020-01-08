@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 @Injectable({providedIn: 'root'})
 export class HousesService {
     private houses: House[] = [];
-    private allHouse: House[] = [];
+    private allHouses: House[] = [];
+    private revHouses: House[] = [];
     private housesUpdated = new Subject<{houses: House[], houseCount: number}>();
     private allHousesUpdated = new Subject<{houses: House[] }>();
 
@@ -17,6 +18,30 @@ export class HousesService {
         const queryParam = `?pagesize=${housePerPage}&page=${currentpage}`;
         this.http.get<{message: string, houses: any, maxHouses: number}>(
             'http://localhost:4000/api/houses' + queryParam)
+            .pipe(map(houseData => {
+                return {houses: houseData.houses.map(house => {
+                    return {
+                        id: house._id,
+                        title: house.title,
+                        location: house.location,
+                        description: house.description,
+                        price: house.price,
+                        mode: house.mode,
+                        landlord: house.landlord,
+                        imagePath: house.imagePath
+                    };
+                }), maxHouses: houseData.maxHouses};
+            }))
+        .subscribe(transformedhousesdata => {
+            this.houses = transformedhousesdata.houses;
+            this.housesUpdated.next({houses: [...this.houses], houseCount: transformedhousesdata.maxHouses});
+            // console.log(transformedhouses);
+        });
+    }
+    getRevHouses(housePerPage: number, currentpage: number) {
+        const queryParam = `?pagesize=${housePerPage}&page=${currentpage}`;
+        this.http.get<{message: string, houses: any, maxHouses: number}>(
+            'http://localhost:4000/api/revHouses' + queryParam)
             .pipe(map(houseData => {
                 return {houses: houseData.houses.map(house => {
                     return {
@@ -55,9 +80,8 @@ export class HousesService {
                 })};
             }))
         .subscribe(transformedhousesdata => {
-            this.allHouse = transformedhousesdata.houses;
-            this.allHousesUpdated.next({houses: [...this.houses]});
-            // console.log(transformedhouses);
+            this.allHouses = transformedhousesdata.houses;
+            this.allHousesUpdated.next({houses: [...this.allHouses]});
         });
     }
     getHouseUpdateListener() {

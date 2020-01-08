@@ -4,18 +4,21 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material.module';
 import { SearchFilter } from '../filter.searchPipe';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [HeaderComponent, SearchFilter],
     imports:[
         CommonModule,
         ReactiveFormsModule,  
-        AngularMaterialModule  
+        AngularMaterialModule,
+        RouterModule  
     ], 
     exports:[
         CommonModule,
         ReactiveFormsModule,
         AngularMaterialModule,
+        RouterModule,
         HeaderComponent
 ]
 })
