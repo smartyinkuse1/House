@@ -4,12 +4,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { signupValidation, loginValidation, houseValidation } = require('../validation/validation')
 const Request = require('../model/request')
-const Super = new User({
-    email: 'super',
-    username: 'super',
-    password: 'super',
-    role:'superuser'
-})
+// const Super = new User({
+//     email: 'super',
+//     username: 'super',
+//     password: 'super',
+//     role:'superuser'
+// })
 exports.signin = async (req, res)=>{
     // const {error} = signupValidation(req.body)
     // if (error) return res.status(400).send({message: error.details[0].message})
@@ -142,7 +142,7 @@ exports.update = (req, res)=>{
        imagePath: imagePath
     })
     House.updateOne({_id: req.params.houseId, landlord: req.userData.userId }, house).then(result=>{
-        if (result.nModified > 0) {
+        if (result.n > 0) {
             res.status(200).send({message: "House updated successfully"})
         } else {
             res.status(401).send({message: "Not Authorized"})

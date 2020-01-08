@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container">
 </div>
 <div *ngIf="houses.length > 0">
@@ -20,3 +21,106 @@
 
 </mat-paginator>
 <p class="mat-body-1" *ngIf="houses.length <= 0"> No Houses Yet</p>
+<nav class="nav nav-tabs bord flex-column flex-sm-row pt-4" id="myTab">
+    <a class="flex-sm-fill text-sm-center nav-link active tabl" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">TOP APARTMENTS</a>
+    <a class="flex-sm-fill text-sm-center nav-link tabl" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">POPULAR LOCATIONS</a>
+    <a class="flex-sm-fill text-sm-center nav-link tabl" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">NEW APARTMENTS</a>
+</nav>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="container-fluid pt-4 pad">
+            <div class="row" style="max-width:100%;">
+                <div class="col-sm-6">
+                    <div class="row mx-auto py-auto" style="background: rgba(147, 106, 74, 0.1);">
+                        <div class="col-sm-6 d-flex flex-column align-items-center pt-2">
+                            <img src="Rectangle 13.png" style="max-width: 100%;">
+                            <span class="begtext"><img src="Vector (1).png"> No 39, Olayinka street, Abule-egba</span>
+                            <p class="begbig">5 BEDROOM MODERN DUPLEX HOUSE</p>
+                        </div>
+                        <div class="col-sm-6 d-flex flex-column pt-2">
+                            <p class="begtext">Description </p>
+                            <p class="begtext">Good lighting system, condusive environment, drainage system. Security measures are also put in place as though the environment is a calm place</p>
+                            <p class="begtext">More about this house</p>
+                                <span class="d-flex flex-row justify-content-around">
+                                    <button type="button" class="btn-sm fung">Rent</button>
+                                    <button type="button" class="btn-sm tung" disabled>Lease</button>
+                                    <button type="button" class="btn-sm tung" disabled>Buy</button>
+                                </span>
+                            <p class="cash pt-2">₦250,000</p>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                            <div class="col-sm-6 d-flex flex-column align-items-center pt-2">
+                                <img src="Rectangle 13.png" style="max-width: 100%;">
+                                <span class="begtext"><img src="Vector (1).png"> No 39, Olayinka street, Abule-egba</span>
+                                <p class="begbig">5 BEDROOM MODERN DUPLEX HOUSE</p>
+                            </div>
+                            <div class="col-sm-6 d-flex flex-column pt-2">
+                                <p class="begtext">Description </p>
+                                <p class="begtext">Good lighting system, condusive environment, drainage system. Security measures are also put in place as though the environment is a calm place</p>
+                                <p class="begtext">More about this house</p>
+                                <div>
+                                    <span class="d-flex flex-row justify-content-around">
+                                        <button type="button" class="btn-sm fung">Rent</button>
+                                        <button type="button" class="btn-sm tung" disabled>Lease</button>
+                                        <button type="button" class="btn-sm tung" disabled>Buy</button>
+                                    </span>
+                                </div>
+                                <p class="cash pt-2">₦250,000</p>
+                            </div>
+                        </div>
+                        <div class="row mt-3 py-auto">
+                                <div class="col-sm-6 d-flex flex-column align-items-center pt-2">
+                                    <img src="Rectangle 13.png" style="max-width: 100%;">
+                                    <span class="begtext"><img src="Vector (1).png"> No 39, Olayinka street, Abule-egba</span>
+                                    <p class="begbig">5 BEDROOM MODERN DUPLEX HOUSE</p>
+                                </div>
+                                <div class="col-sm-6 d-flex flex-column pt-2">
+                                    <p class="begtext">Description </p>
+                                    <p class="begtext">Good lighting system, condusive environment, drainage system. Security measures are also put in place as though the environment is a calm place</p>
+                                    <p class="begtext">More about this house</p>
+                                    <div>
+                                        <span class="d-flex flex-row justify-content-around">
+                                            <button type="button" class="btn-sm fung">Rent</button>
+                                            <button type="button" class="btn-sm tung" disabled>Lease</button>
+                                            <button type="button" class="btn-sm tung" disabled>Buy</button>
+                                        </span>
+                                    </div>
+                                    <p class="cash pt-2">₦250,000</p>
+                                </div>
+                            </div>
+                            
+                    
+                </div>
+                <div class="col-sm-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31713.382530444862!2d3.3367942785061517!3d6.499793989093118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8e99d45154cd%3A0x7ef1b8b32e6beeba!2s39%20Olayinka%20St%2C%20Itire%2C%20Lagos!5e0!3m2!1sen!2sng!4v1575886638870!5m2!1sen!2sng" width="100%" height="100%" frameborder="0" allowfullscreen="true" class="d-none d-sm-block"></iframe>
+                    <!-- <img src="Rectangle 14.png" style="max-width: 100%;"> -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><h2>Second post</h2></div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><h3>Yess it worked on my end</h3></div>
+</div>  
+<div class="container-fluid">
+    <span class="begbig my-3">SEE ALL <img src="droplink.png"></span>
+    <!-- <p class="begbig">SEE ALL<span class="caret"></span></p> -->
+</div>
+<hr style="border: 1px solid #936A4A;">
+<div class="container-fluid d-none d-sm-block">
+    <p class="loca my-5">LOCATIONS</p>
+    <div class="row">
+        <div class="col-sm-3"><img src="Rectangle 21.png" alt="" class="maps"></div>
+        <div class="col-sm-3"><img src="Rectangle 22.png" alt="" class="maps"></div>
+        <div class="col-sm-3"><img src="Rectangle 23.png" alt="" class="maps"></div>
+        <div class="col-sm-3"><img src="Rectangle 24.png" alt="" class="maps"></div>
+    </div>
+    <div class="row my-5">
+            <div class="col-sm-3"><img src="Rectangle 25.png" alt="" class="maps"></div>
+            <div class="col-sm-3"><img src="Rectangle 26.png" alt="" class="maps"></div>
+            <div class="col-sm-3"><img src="Rectangle 25.png" alt="" class="maps"></div>
+            <div class="col-sm-3"><img src="Rectangle 25.png" alt="" class="maps"></div>
+    </div>
+    <span class="begbig my-5 py-5">SEE ALL <img src="droplink.png"></span>
+</div>

@@ -13,7 +13,8 @@ const routes: Routes = [
     {path: 'view/:requestId', component: RequestListComponent},
     {path: 'crequest', component: RequestCreateComponent },
     {path: 'request', component: RequestListComponent},
-    {path: 'login', component: LoginComponent }
+    {path: 'auth', loadChildren: './auth/auth.module#AuthModule'}
+    
 ];
 
 @NgModule({
