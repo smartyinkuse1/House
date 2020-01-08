@@ -104,6 +104,19 @@ exports.getHouses = (req, res)=>{
         });
     });
 }
+exports.getAllHouses = (req, res)=>{
+   House.find().then(houses => {
+    res.send({
+        message: 'Houses retrieved sucessfully',
+        houses: houses
+    })
+   })
+    .catch(err =>{
+        res.status(500).send({
+            message: err.message || "some errors eccoured while retrieving the houses"
+        });
+    });
+}
 exports.getHouse = (req, res)=>{
     House.findById({_id:req.params.id}).then(house=>{
         if (house) {res.status(200).send(house)}

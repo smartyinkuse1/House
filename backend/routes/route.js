@@ -27,6 +27,7 @@ const storage = multer.diskStorage({
     app.post('/api/login', control.login)
     app.post('/api/create', verify, multer({storage:storage}).single('image'), control.create)
     app.get('/api/houses', control.getHouses)
+    app.get('/api/allHouses', control.getAllHouses)
     app.get('/api/house/:id', control.getHouse)
     app.delete('/api/houseDel/:houseId',verify,  control.delete)
     app.put('/api/houseUp/:houseId', verify, multer({storage:storage}).single('image'), control.update)

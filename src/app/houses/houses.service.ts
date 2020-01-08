@@ -38,8 +38,8 @@ export class HousesService {
         });
     }
     getAllHouses() {
-        this.http.get<{message: string, houses: any, maxHouses: number}>(
-            'http://localhost:4000/api/houses')
+        this.http.get<{message: string, houses: any}>(
+            'http://localhost:4000/api/allHouses')
             .pipe(map(houseData => {
                 return {houses: houseData.houses.map(house => {
                     return {
@@ -62,6 +62,9 @@ export class HousesService {
     }
     getHouseUpdateListener() {
         return this.housesUpdated.asObservable();
+    }
+    getAllHousesUpdateListener() {
+        return this.allHousesUpdated.asObservable();
     }
     addHouse(Title: string, Location: string, Description: string, Price: number, Mode: string, Image: File) {
        const houseData = new FormData();
