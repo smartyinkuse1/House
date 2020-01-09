@@ -41,6 +41,12 @@ ul {
     position: absolute;
     top: 40%;
     left: 50%;
+    transform: translate(-50%, -50%);
+}
+.centa{
+    position: absolute;
+    top: 38%;
+    left: 50%;
     transform: translate(-50%, -50%);}
 .wel{
     font-family: 'Poppins';
@@ -79,13 +85,14 @@ ul {
     background-color: #936A4A !important;
     font-family: 'Poppins';
     font-size: 14px;
+    border: 1px solid #936A4A;
     border-radius: 5px !important;
     color :#ffffff;
 }
 .fungi:hover{
     background-color: transparent;
     text-decoration: none;
-    border: none;
+    border: 1px solid #936A4A;
     box-shadow: none;
 }
 .fungi:focus{

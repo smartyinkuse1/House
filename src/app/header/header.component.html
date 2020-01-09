@@ -39,14 +39,14 @@
             <span class="pl-1"><button type="button" class="btn-sm fungi">Register</button></span>
         </div>
     </div>
-    <div class="cent">
+    <div class="centa">
         <p class="wela">Hey there, trust us to find you a home</p>
         <p class="geta">Get yourself a place of your dreams</p>
-        <div>
+        <form [formGroup]="form" (submit)="onSearch()">
             <input type="text" class="form-control pholder" placeholder="Where do you want to live?"
-                aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button class="btn search ml-3 pl-2 mt-1" type="button" id="button-addon2"><img
+                aria-label="Recipient's username" aria-describedby="button-addon2" formControlName="search">
+            <button class="btn search ml-3 pl-2 mt-1" type="submit" id="button-addon2"><img
                     src="../../assets/Vector.png"> <span style="color: #ffffff;">Search</span></button>
-        </div>
+        </form>
     </div>
 </div>

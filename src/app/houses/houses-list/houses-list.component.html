@@ -83,12 +83,156 @@
 
         </div>
     </div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><h2>Second post</h2></div>
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><h3>Yess it worked on my end</h3></div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="container-fluid pt-4 pad">
+            <div class="row" style="max-width:100%;">
+                <div class="col-sm-6">
+                    <div class="row mx-auto py-auto" *ngFor="let house of houses" [ngClass]="{'brown': isFirst(house)}">
+                        <div class="col-sm-6 d-flex flex-column align-items-center pt-2">
+                            <img [src]="house.imagePath" style="max-width: 100%;">
+                            <span class="begtext"><img src="../../../assets/Frame 3.png">  {{ house.location }}</span>
+                            <p class="begbig">{{ house.title }}</p>
+                        </div>
+                        <div class="col-sm-6 d-flex flex-column pt-2">
+                            <p class="begtext">Description </p>
+                            <p class="begtext">{{ house.description }}</p>
+                            <p class="begtext">More about this house</p>
+                                <span class="d-flex flex-row justify-content-around">
+                                    <button type="button" class="btn-sm" [ngClass]="{'fung':isMode(house, 'Rent'), 'tung':!isMode(house, 'Rent')}">Rent</button>
+                                    <button type="button" class="btn-sm" [ngClass]="{'fung':isMode(house, 'Lease'), 'tung':!isMode(house, 'Lease')}" disabled>Lease</button>
+                                    <button type="button" class="btn-sm" [ngClass]="{'fung':isMode(house, 'Buy'), 'tung':!isMode(house, 'Buy')}" disabled>Buy</button>
+                                </span>
+                            <p class="cash pt-2">₦{{ house.price }}</p>
+                        </div>
+                    </div>
+                    <!-- <div class="row mt-3">
+                            <div class="col-sm-6 d-flex flex-column align-items-center pt-2">
+                                <img src="Rectangle 13.png" style="max-width: 100%;">
+                                <span class="begtext"><img src="Vector (1).png"> No 39, Olayinka street, Abule-egba</span>
+                                <p class="begbig">5 BEDROOM MODERN DUPLEX HOUSE</p>
+                            </div>
+                            <div class="col-sm-6 d-flex flex-column pt-2">
+                                <p class="begtext">Description </p>
+                                <p class="begtext">Good lighting system, condusive environment, drainage system. Security measures are also put in place as though the environment is a calm place</p>
+                                <p class="begtext">More about this house</p>
+                                <div>
+                                    <span class="d-flex flex-row justify-content-around">
+                                        <button type="button" class="btn-sm fung">Rent</button>
+                                        <button type="button" class="btn-sm tung" disabled>Lease</button>
+                                        <button type="button" class="btn-sm tung" disabled>Buy</button>
+                                    </span>
+                                </div>
+                                <p class="cash pt-2">₦250,000</p>
+                            </div>
+                        </div>
+                        <div class="row mt-3 py-auto">
+                                <div class="col-sm-6 d-flex flex-column align-items-center pt-2">
+                                    <img src="Rectangle 13.png" style="max-width: 100%;">
+                                    <span class="begtext"><img src="Vector (1).png"> No 39, Olayinka street, Abule-egba</span>
+                                    <p class="begbig">5 BEDROOM MODERN DUPLEX HOUSE</p>
+                                </div>
+                                <div class="col-sm-6 d-flex flex-column pt-2">
+                                    <p class="begtext">Description </p>
+                                    <p class="begtext">Good lighting system, condusive environment, drainage system. Security measures are also put in place as though the environment is a calm place</p>
+                                    <p class="begtext">More about this house</p>
+                                    <div>
+                                        <span class="d-flex flex-row justify-content-around">
+                                            <button type="button" class="btn-sm fung">Rent</button>
+                                            <button type="button" class="btn-sm tung" disabled>Lease</button>
+                                            <button type="button" class="btn-sm tung" disabled>Buy</button>
+                                        </span>
+                                    </div>
+                                    <p class="cash pt-2">₦250,000</p>
+                                </div>
+                            </div> -->
+                            
+                    
+                </div>
+                <div class="col-sm-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31713.382530444862!2d3.3367942785061517!3d6.499793989093118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8e99d45154cd%3A0x7ef1b8b32e6beeba!2s39%20Olayinka%20St%2C%20Itire%2C%20Lagos!5e0!3m2!1sen!2sng!4v1575886638870!5m2!1sen!2sng" width="100%" height="100%" frameborder="0" allowfullscreen="true" class="d-none d-sm-block"></iframe>
+                    <!-- <img src="Rectangle 14.png" style="max-width: 100%;"> -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="container-fluid pt-4 pad">
+            <div class="row" style="max-width:100%;">
+                <div class="col-sm-6">
+                    <div class="row mx-auto py-auto" *ngFor="let house of houses" [ngClass]="{'brown': isFirst(house)}">
+                        <div class="col-sm-6 d-flex flex-column align-items-center pt-2">
+                            <img [src]="house.imagePath" style="max-width: 100%;">
+                            <span class="begtext"><img src="../../../assets/Frame 3.png">  {{ house.location }}</span>
+                            <p class="begbig">{{ house.title }}</p>
+                        </div>
+                        <div class="col-sm-6 d-flex flex-column pt-2">
+                            <p class="begtext">Description </p>
+                            <p class="begtext">{{ house.description }}</p>
+                            <p class="begtext">More about this house</p>
+                                <span class="d-flex flex-row justify-content-around">
+                                    <button type="button" class="btn-sm" [ngClass]="{'fung':isMode(house, 'Rent'), 'tung':!isMode(house, 'Rent')}">Rent</button>
+                                    <button type="button" class="btn-sm" [ngClass]="{'fung':isMode(house, 'Lease'), 'tung':!isMode(house, 'Lease')}" disabled>Lease</button>
+                                    <button type="button" class="btn-sm" [ngClass]="{'fung':isMode(house, 'Buy'), 'tung':!isMode(house, 'Buy')}" disabled>Buy</button>
+                                </span>
+                            <p class="cash pt-2">₦{{ house.price }}</p>
+                        </div>
+                    </div>
+                    <!-- <div class="row mt-3">
+                            <div class="col-sm-6 d-flex flex-column align-items-center pt-2">
+                                <img src="Rectangle 13.png" style="max-width: 100%;">
+                                <span class="begtext"><img src="Vector (1).png"> No 39, Olayinka street, Abule-egba</span>
+                                <p class="begbig">5 BEDROOM MODERN DUPLEX HOUSE</p>
+                            </div>
+                            <div class="col-sm-6 d-flex flex-column pt-2">
+                                <p class="begtext">Description </p>
+                                <p class="begtext">Good lighting system, condusive environment, drainage system. Security measures are also put in place as though the environment is a calm place</p>
+                                <p class="begtext">More about this house</p>
+                                <div>
+                                    <span class="d-flex flex-row justify-content-around">
+                                        <button type="button" class="btn-sm fung">Rent</button>
+                                        <button type="button" class="btn-sm tung" disabled>Lease</button>
+                                        <button type="button" class="btn-sm tung" disabled>Buy</button>
+                                    </span>
+                                </div>
+                                <p class="cash pt-2">₦250,000</p>
+                            </div>
+                        </div>
+                        <div class="row mt-3 py-auto">
+                                <div class="col-sm-6 d-flex flex-column align-items-center pt-2">
+                                    <img src="Rectangle 13.png" style="max-width: 100%;">
+                                    <span class="begtext"><img src="Vector (1).png"> No 39, Olayinka street, Abule-egba</span>
+                                    <p class="begbig">5 BEDROOM MODERN DUPLEX HOUSE</p>
+                                </div>
+                                <div class="col-sm-6 d-flex flex-column pt-2">
+                                    <p class="begtext">Description </p>
+                                    <p class="begtext">Good lighting system, condusive environment, drainage system. Security measures are also put in place as though the environment is a calm place</p>
+                                    <p class="begtext">More about this house</p>
+                                    <div>
+                                        <span class="d-flex flex-row justify-content-around">
+                                            <button type="button" class="btn-sm fung">Rent</button>
+                                            <button type="button" class="btn-sm tung" disabled>Lease</button>
+                                            <button type="button" class="btn-sm tung" disabled>Buy</button>
+                                        </span>
+                                    </div>
+                                    <p class="cash pt-2">₦250,000</p>
+                                </div>
+                            </div> -->
+                            
+                    
+                </div>
+                <div class="col-sm-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31713.382530444862!2d3.3367942785061517!3d6.499793989093118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8e99d45154cd%3A0x7ef1b8b32e6beeba!2s39%20Olayinka%20St%2C%20Itire%2C%20Lagos!5e0!3m2!1sen!2sng!4v1575886638870!5m2!1sen!2sng" width="100%" height="100%" frameborder="0" allowfullscreen="true" class="d-none d-sm-block"></iframe>
+                    <!-- <img src="Rectangle 14.png" style="max-width: 100%;"> -->
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>  
 <div class="container-fluid">
-    <span class="begbig my-3">SEE ALL <img src="droplink.png"></span>
-    <mat-paginator [length]="totalLength" [pageSize]="housePerPage"  (page)="onChangedPage($event)"></mat-paginator>
+    <span class="begbig my-3"><p class="pt-4 mt-2">SEE ALL</p> <mat-paginator [length]="totalLength" [pageSize]="housePerPage"  (page)="onChangedPage($event)"></mat-paginator></span>
+    
     <!-- <p class="begbig">SEE ALL<span class="caret"></span></p> -->
 </div>
 <hr style="border: 1px solid #936A4A;">

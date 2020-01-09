@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HousesService } from '../houses/houses.service';
 import { House } from '../houses/house.model';
-import { SearchFilter } from '../filter.searchPipe';
+import { SearchFilter } from './filter.searchPipe';
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',

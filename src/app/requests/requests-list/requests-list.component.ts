@@ -46,4 +46,7 @@ export class RequestListComponent implements OnInit, OnDestroy {
             this.requestSub.unsubscribe();
         }
     }
+    onDelete(requestId: string) {
+        
+    }
 }

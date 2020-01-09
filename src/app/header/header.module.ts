@@ -3,7 +3,7 @@ import { HeaderComponent } from './header.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material.module';
-import { SearchFilter } from '../filter.searchPipe';
+import { SearchFilter } from './filter.searchPipe';
 import { RouterModule } from '@angular/router';
 
 @NgModule({

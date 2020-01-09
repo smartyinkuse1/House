@@ -32,6 +32,28 @@ exports.signin = async (req, res)=>{
         res.status(400).send({message:err})
     })
 }
+exports.signinS = async (req, res)=>{
+    // const {error} = signupValidation(req.body)
+    // if (error) return res.status(400).send({message: error.details[0].message})
+    // const userNameExist = await User.findOne({username:req.body.username})
+    // if (userNameExist) return res.status(400).send({message:'Username already exist'})
+    const hashedpassword = await bcrypt.hash('super', 10)
+    
+    const user = new User({
+        firstName:'super',
+        lastName:'super',
+        email:req.body.email,
+        username: 'super',
+        password:hashedpassword, 
+        role:"superuser"
+    })
+        user.save().then(user =>{
+        res.send({message:"user created succesfully",
+    User:user})})
+        .catch(err=>{
+        res.status(400).send({message:err})
+    })
+}
 exports.login = async(req, res) =>{
     const { error } = loginValidation(req.body)
     if(error) return res.status(400).send({message:error.details[0].message})
@@ -39,18 +61,31 @@ exports.login = async(req, res) =>{
     if(!users) return res.status(400).send({message: 'Inavalid Username'})
     if (users.role === 'user'){
         const validpass = await bcrypt.compare(req.body.password, users.password)
-        console.log(validpass) 
+        // console.log(validpass) 
         if(!validpass) return res.status(400).send({message: 'Incorrect password!!'})
         const token = jwt.sign({username: users.username, id:users._id}, process.env.SECRET_KEY1)
         res.status(200).send({
             token: token,
             expiresIn: 3600,
-            userId: users._id
+            userId: users._id,
+            user: users.username
         })
+    }
+    if (users.role === 'superuser'){
+        const validpass = await bcrypt.compare(req.body.password, users.password)
+        // console.log(validpass) 
+        if(!validpass) return res.status(400).send({message: 'Incorrect password!!'})
+        const token = jwt.sign({username: users.username, id:users._id}, process.env.SECRET_KEY1)
+        res.status(200).send({
+            token: token,
+            expiresIn: 3600,
+            userId: users._id,
+            user: users.username
+        })    
     }
 }
 exports.create = async(req, res)=>{
-    console.warn(req.userData)
+    // console.warn(req.userData)
     const { error } = houseValidation(req.body)
     if (error) return res.status(400).send({message: error.details[0].message})
     const url = req.protocol + '://' + req.get('host');
