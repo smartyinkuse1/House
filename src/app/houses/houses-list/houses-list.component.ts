@@ -74,7 +74,7 @@ export class HouseListComponent implements OnInit, OnDestroy {
     }
     getLongLat(address:string) {
         const Query = `${address.trim().split(' ').join('+')}`
-        return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' +Query+'&key=AIzaSyDenzc6i4ylaPKZe3D-Y_BpCpedHQRz4tY')
+        return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' +Query+'&key=AIzaSyBi8Dukb03vKnXpK5qAgUf4IPcDXp450aU')
     }
 
 }

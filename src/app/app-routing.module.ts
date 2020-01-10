@@ -4,8 +4,9 @@ import { HouseCreateComponent } from './houses/houses-create/houses-create.compo
 import { HouseListComponent } from './houses/houses-list/houses-list.component';
 import { RequestCreateComponent } from './requests/requests-create/requests-create.component';
 import { RequestListComponent } from './requests/requests-list/requests-list.component';
-import { LoginComponent } from './auth/Login/login.component';
+// import { LoginComponent } from './auth/Login/login.component';
 import { AuthGuard } from './auth/auth-guard';
+import { AuthGuards } from './auth/auth-guardun';
 const routes: Routes = [
     {path: '', component: HouseListComponent },
     {path: 'create', component: HouseCreateComponent, canActivate: [AuthGuard] },
@@ -13,13 +14,13 @@ const routes: Routes = [
     {path: 'view/:requestId', component: RequestListComponent},
     {path: 'crequest', component: RequestCreateComponent },
     {path: 'request', component: RequestListComponent},
-    {path: 'auth', loadChildren: './auth/auth.module#AuthModule'}
+    {path: 'auth', loadChildren: './auth/auth.module#AuthModule', canActivate: [AuthGuards]}
     
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
-    providers: [AuthGuard]
+    providers: [AuthGuard, AuthGuards]
 })
 export class AppRoutingModule {}

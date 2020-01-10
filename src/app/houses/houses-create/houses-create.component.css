@@ -11,3 +11,110 @@ input[type='file'] {
 mat-spinner {
     margin: auto;
 }
+.head {
+    background-color: #936A4A;
+}
+.hell {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    color: #FFFFFF !important;
+}
+.add {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    color: #603717;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+li {
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    line-height: 2em;
+    border-radius: 1em;
+    background: #936A4A;
+    margin: 0 1em;
+    display: inline-block;
+    color: white;
+    position: relative;
+  }
+  
+  li::before{
+    content: '';
+    position: absolute;
+    top: .9em;
+    left: -4em;
+    width: 4em;
+    height: .2em;
+    background: #936A4A;
+    z-index: -1;
+  }
+  
+  
+  li:first-child::before {
+    display: none;
+  }
+  
+  .active {
+    background: #936A4A;
+  }
+  
+  .active ~ li {
+    background: #E3BDA0;
+  }
+  
+  .active ~ li::before {
+    background: #E3BDA0;
+  }
+  .box {
+    background: rgba(147, 106, 74, 0.02);
+    border: 1px solid rgba(147, 106, 74, 0.31);
+    box-sizing: border-box;
+    border-radius: 5px
+  }
+.be {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #936A4A;
+}
+.rowbord {
+    border: 1px solid  rgba(147, 106, 74, 0.4);
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+.colbord {
+    border:  1px solid rgba(147, 106, 74, 0.4);
+}
+input {
+    border: 1px solid rgba(147, 106, 74, 0.4) !important;
+}
+.lab {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #603717
+}
+.inp {
+    width: 75% !important;
+}
+.inner {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    color: #603717;
+}
