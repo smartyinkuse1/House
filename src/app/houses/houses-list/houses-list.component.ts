@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { House } from '../house.model';
 import { HousesService } from '../houses.service';
 import { Subscription } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { PageEvent } from '@angular/material';
 import { AuthService } from 'src/app/auth/auth.services';
 @Component({
@@ -11,6 +12,8 @@ import { AuthService } from 'src/app/auth/auth.services';
 })
 export class HouseListComponent implements OnInit, OnDestroy {
     houses: House[] = [];
+    locat: any = {};
+    currentHouseLocation: string;
     HousesSub: Subscription;
     AuthSub: Subscription;
     userIsAuthenticated = false;
@@ -18,7 +21,7 @@ export class HouseListComponent implements OnInit, OnDestroy {
     totalLength = 10;
     housePerPage = 3;
     currentPage = 1;
-    constructor(public housesService: HousesService, public authService: AuthService) {
+    constructor(public housesService: HousesService, public authService: AuthService, private http: HttpClient) {
 
     }
     ngOnInit() {
@@ -27,7 +30,12 @@ export class HouseListComponent implements OnInit, OnDestroy {
         this.HousesSub = this.housesService.getHouseUpdateListener()
         .subscribe((housesData: {houses: House[], houseCount: number}) => {
             this.houses = housesData.houses;
+            this.currentHouseLocation = this.houses[0].location;
             this.totalLength = housesData.houseCount;
+            this.getLongLat(this.currentHouseLocation)
+            .subscribe(result => {
+                this.locat = result[0]['geometry']['location']
+            })
         });
         this.userIsAuthenticated = this.authService.getAuth();
         this.AuthSub = this.authService.getAuthStatusListener()
@@ -64,6 +72,11 @@ export class HouseListComponent implements OnInit, OnDestroy {
         this.HousesSub.unsubscribe();
         this.AuthSub.unsubscribe();
     }
+    getLongLat(address:string) {
+        const Query = `${address.trim().split(' ').join('+')}`
+        return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' +Query+'&key=AIzaSyDenzc6i4ylaPKZe3D-Y_BpCpedHQRz4tY')
+    }
+
 }
 
 

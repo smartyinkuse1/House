@@ -7,9 +7,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { RequestCreateComponent } from './requests/requests-create/requests-create.component';
 import { RequestListComponent } from './requests/requests-list/requests-list.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { ErrorInterceptor } from './error-interceptor';
 import { AngularMaterialModule } from './angular-material.module';
 import { HousesModule } from './houses/houses.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
@@ -17,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     RequestCreateComponent,
     RequestListComponent,
+    ErrorComponent
     
 
   ],
@@ -30,7 +33,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
 
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
-  bootstrap: [AppComponent]
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent]
 })
 export class AppModule { }
